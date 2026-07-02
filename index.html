@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Cowork — Guia Prático do Empresário</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:    #DC2626;
+  --red-lt: #FEF2F2;
+  --red-md: #FCA5A5;
+  --ink:    #111111;
+  --ink-2:  #444444;
+  --ink-3:  #888888;
+  --rule:   #E5E5E5;
+  --bg:     #FAFAFA;
+  --white:  #FFFFFF;
+  --code-bg:#1A1A1A;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--white);
+  min-height: 100vh;
+  padding: 0 0 80px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 4px 32px rgba(0,0,0,.06);
+}
+
+/* ── COVER ───────────────────────────────── */
+.cover {
+  padding: 56px 56px 48px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cover-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--red);
+  border: 1.5px solid var(--red);
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin-bottom: 24px;
+}
+
+.cover h1 {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 14px;
+  text-wrap: balance;
+}
+
+.cover h1 span { color: var(--red); }
+
+.cover-sub {
+  font-size: 16px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+
+.cover-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.cover-meta-author {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cover-meta-label {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.cover-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.pill {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-3);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+/* ── BODY ────────────────────────────────── */
+.body { padding: 0 56px; }
+
+/* ── SECTION ─────────────────────────────── */
+.section {
+  padding-top: 56px;
+}
+
+.section + .section {
+  border-top: 1px solid var(--rule);
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.section-num {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--red);
+  line-height: 1;
+  letter-spacing: -.03em;
+  flex-shrink: 0;
+  margin-top: -4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.section-info {}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.section-desc {
+  font-size: 13px;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+/* ── CALLOUT ─────────────────────────────── */
+.callout {
+  background: var(--red-lt);
+  border-left: 3px solid var(--red);
+  padding: 14px 18px;
+  border-radius: 0 6px 6px 0;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin: 20px 0;
+}
+.callout strong { color: var(--ink); }
+
+/* ── PROMPT CARD ─────────────────────────── */
+.prompt-card {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+
+.prompt-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.prompt-save {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-3);
+  letter-spacing: .04em;
+}
+
+.prompt-stat {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--red);
+  background: var(--red-lt);
+  padding: 3px 8px;
+  border-radius: 100px;
+}
+
+.prompt-body {
+  background: var(--code-bg);
+  padding: 20px;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: #E5E7EB;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.prompt-body .ph {
+  color: #6EE7B7;
+  font-style: italic;
+}
+
+/* ── STEPS ───────────────────────────────── */
+.steps { margin: 8px 0 20px; }
+
+.step {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+.step:last-child { border-bottom: none; }
+
+.step-num {
+  width: 26px;
+  height: 26px;
+  background: var(--red);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-variant-numeric: tabular-nums;
+}
+
+.step-content {}
+.step-label { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.step-detail { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.step-detail code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--red);
+}
+
+/* ── ROUTINE BLOCKS ──────────────────────── */
+.routine-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.routine-card {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.routine-card-head {
+  background: var(--ink);
+  padding: 12px 14px;
+}
+
+.routine-time {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--red-md);
+  margin-bottom: 4px;
+}
+
+.routine-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+}
+
+.routine-card-body {
+  padding: 14px;
+}
+
+.routine-item {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  padding: 5px 0;
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.5;
+  display: flex;
+  gap: 8px;
+}
+.routine-item:last-child { border-bottom: none; }
+.routine-item::before { content: '→'; color: var(--red); flex-shrink: 0; font-weight: 700; }
+
+/* ── CONTEXT BOX ─────────────────────────── */
+.context-box {
+  background: var(--code-bg);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 16px 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: #E5E7EB;
+  white-space: pre-wrap;
+}
+
+.context-box .comment { color: #6B7280; }
+.context-box .key { color: #93C5FD; }
+.context-box .val { color: #6EE7B7; }
+
+/* ── FOOTER ──────────────────────────────── */
+.footer {
+  margin-top: 64px;
+  padding: 28px 56px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-brand {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.footer-brand span { color: var(--red); }
+.footer-link {
+  font-size: 12px;
+  color: var(--ink-3);
+  text-decoration: none;
+}
+.footer-link:hover { color: var(--red); }
+
+/* ── DIVIDER ─────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--rule);
+  margin: 40px 0;
+}
+
+p { color: var(--ink-2); font-size: 14px; line-height: 1.7; margin-bottom: 16px; }
+strong { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-tag">NexusMind · Claude Cowork</div>
+    <h1>Os 7 prompts que uso<br>todo dia como <span>empresário.</span></h1>
+    <p class="cover-sub">Mais o passo a passo para configurar o Claude Cowork em 10 minutos e a rotina de 3 passos para delegar 3 horas de trabalho operacional por dia.</p>
+    <div class="cover-meta">
+      <div>
+        <div class="cover-meta-author">Igor Miguel</div>
+        <div class="cover-meta-label">CoFundador · NexusMind</div>
+      </div>
+      <div class="cover-pills">
+        <span class="pill">Copiar e usar</span>
+        <span class="pill">Sem técnica</span>
+        <span class="pill">Resultado imediato</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- SEÇÃO 1 -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-num">1</div>
+        <div class="section-info">
+          <div class="section-title">Os 7 Prompts do Empresário</div>
+          <div class="section-desc">Copie, substitua os campos em itálico verde pelo seu contexto, cole no Claude Cowork.</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Como usar:</strong> cada prompt tem campos marcados em verde. Substitua pelo seu contexto real — quanto mais específico, melhor o resultado. Não precisa escrever perfeitamente. O Claude entende linguagem natural.
+      </div>
+
+      <!-- Prompt 1 -->
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-title">01 · Análise de proposta comercial</span>
+          <span class="prompt-stat">40 min → 8 min</span>
+        </div>
+        <div class="prompt-body">Você é um consultor comercial sênior. Analise a proposta abaixo e me entregue:
+
+1. Os 3 pontos mais fortes para destacar na apresentação
+2. As 2 objeções mais prováveis e como responder a cada uma
+3. O que está faltando ou pode ser melhorado antes de enviar
+
+Proposta:
+<span class="ph">[Cole o texto da sua proposta aqui]</span>
+
+Contexto do cliente:
+<span class="ph">[O que você sabe sobre o perfil e a dor desse cliente]</span></div>
+      </div>
+
+      <!-- Prompt 2 -->
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-title">02 · Briefing de reunião com cliente</span>
+          <span class="prompt-stat">30 min → 5 min</span>
+        </div>
+        <div class="prompt-body">Tenho uma reunião com <span class="ph">[nome / empresa]</span> sobre <span class="ph">[assunto]</span>.
+
+O que sei sobre eles: <span class="ph">[contexto do cliente — setor, cargo, dores que você já identificou]</span>
+
+Me prepare com:
+— Os 5 pontos mais importantes para cobrir
+— 3 perguntas para entender a dor real por trás do pedido deles
+— Como abrir a reunião nos primeiros 2 minutos
+— O que NÃO falar ou perguntar nessa reunião</div>
+      </div>
+
+      <!-- Prompt 3 -->
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-title">03 · Resposta para objeção difícil</span>
+          <span class="prompt-stat">20 min → 3 min</span>
+        </div>
+        <div class="prompt-body">Um prospect me disse: "<span class="ph">[objeção exata — copie a frase dele]</span>"
+
+O que vendo: <span class="ph">[descreva seu produto ou serviço em 2 linhas]</span>
+Ticket médio: <span class="ph">[valor aproximado]</span>
+
+Me dê 3 formas de responder essa objeção:
+1. Uma resposta empática que valida a preocupação sem ceder
+2. Uma resposta ancorada em prova social ou dado concreto
+3. Uma resposta que transforma a objeção em pergunta de qualificação</div>
+      </div>
+
+      <!-- Prompt 4 -->
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-title">04 · Relatório de performance semanal</span>
+          <span class="prompt-stat">1h → 12 min</span>
+        </div>
+        <div class="prompt-body">Crie um relatório de performance semanal com base nos dados abaixo.
+Formato: executivo, direto, máximo 1 página.
+
+Estrutura obrigatória:
+— Resultado da semana (números principais)
+— O que funcionou e por quê
+— O que não funcionou e hipótese de causa
+— Próximos 3 passos prioritários
+
+Dados da semana:
+<span class="ph">[Cole seus números, metas, observações — pode ser bagunçado, eu organizo]</span></div>
+      </div>
+
+      <!-- Prompt 5 -->
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-title">05 · Roteiro de apresentação para cliente</span>
+          <span class="prompt-stat">2h → 20 min</span>
+        </div>
+        <div class="prompt-body">Crie o roteiro de uma apresentação de <span class="ph">[X minutos]</span> para <span class="ph">[perfil do público]</span>.
+
+Objetivo: <span class="ph">[o que preciso que decidam ou entendam ao final]</span>
+Tom: <span class="ph">[consultivo / direto / técnico / comercial]</span>
+
+Estrutura:
+— Abertura que prende atenção nos primeiros 30 segundos
+— Desenvolvimento em blocos de no máximo 3 minutos cada
+— Fechamento com CTA claro e próximo passo definido
+
+Contexto adicional: <span class="ph">[qualquer detalhe relevante sobre o cliente ou o contexto]</span></div>
+      </div>
+
+      <!-- Prompt 6 -->
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-title">06 · E-mail de follow-up</span>
+          <span class="prompt-prompt-save"></span>
+          <span class="prompt-stat">15 min → 2 min</span>
+        </div>
+        <div class="prompt-body">Escreva um e-mail de follow-up para <span class="ph">[nome]</span>.
+
+Última interação: <span class="ph">[o que foi dito, decidido ou combinado]</span>
+Objetivo desse e-mail: <span class="ph">[marcar próximo passo / enviar proposta / reativar interesse]</span>
+
+Regras:
+— Máximo 5 linhas
+— Tom direto, sem enrolação
+— Proibido usar: "espero que esteja bem", "conforme conversamos", "fico à disposição"
+— Terminar com uma pergunta ou ação clara</div>
+      </div>
+
+      <!-- Prompt 7 -->
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-title">07 · Planejamento semanal</span>
+          <span class="prompt-stat">45 min → 5 min</span>
+        </div>
+        <div class="prompt-body">Com base nas minhas prioridades abaixo, monte meu planejamento da semana.
+
+Me entregue:
+— Os 3 blocos de trabalho profundo que devo proteger (com duração sugerida)
+— O que pode ser delegado, automatizado ou adiado sem custo real
+— A tarefa mais importante de segunda-feira de manhã
+— O que NÃO colocar na agenda essa semana
+
+Minhas prioridades e compromissos:
+<span class="ph">[Liste suas tarefas, reuniões e metas da semana — pode ser em lista simples]</span></div>
+      </div>
+
+    </div><!-- /section 1 -->
+
+
+    <!-- SEÇÃO 2 -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-num">2</div>
+        <div class="section-info">
+          <div class="section-title">Configure o Claude Cowork em 10 minutos</div>
+          <div class="section-desc">Um Project no Claude com o contexto do seu negócio salvo. Cada conversa começa já sabendo quem você é.</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>O que é o Claude Cowork:</strong> é um Project dentro do Claude onde você salva o contexto do seu negócio uma vez — e ele fica disponível em todas as conversas dentro desse Project. Sem repetir quem você é, o que vende ou para quem. A IA já sabe.
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-label">Acesse claude.ai e entre na sua conta</div>
+            <div class="step-detail">Se não tiver conta, crie gratuitamente. O plano gratuito já funciona. O Pro (US$20/mês) tem mais mensagens e acesso a modelos mais avançados.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-label">Clique em "Projects" no menu lateral esquerdo</div>
+            <div class="step-detail">Em seguida, clique em <code>+ New Project</code>. Dê o nome do seu negócio ou <code>Cowork</code>.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-label">Adicione o contexto do seu negócio em "Project Instructions"</div>
+            <div class="step-detail">Esse é o campo mais importante. Cole o modelo abaixo com suas informações preenchidas.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-label">Adicione documentos relevantes (opcional, mas recomendado)</div>
+            <div class="step-detail">Você pode subir arquivos: proposta padrão, FAQ de objeções, lista de clientes, scripts de reunião. O Claude vai usar esses documentos nas respostas.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-label">Toda nova conversa dentro do Project já tem o contexto carregado</div>
+            <div class="step-detail">Abra uma nova conversa, cole o Prompt 01 (ou qualquer outro), e use. Sem apresentações. Sem repetições.</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--ink-3);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Modelo de Project Instructions — copie e preencha</p>
+      <div class="context-box"><span class="comment"># Contexto do meu negócio</span>
+
+<span class="key">Nome:</span> <span class="val">[Seu nome]</span>
+<span class="key">Empresa:</span> <span class="val">[Nome da empresa]</span>
+<span class="key">O que faço:</span> <span class="val">[Descreva em 2 linhas o que você entrega]</span>
+<span class="key">Para quem:</span> <span class="val">[Perfil do cliente ideal — cargo, setor, tamanho de empresa]</span>
+<span class="key">Ticket médio:</span> <span class="val">[Valor aproximado por cliente]</span>
+<span class="key">Principal dor do meu cliente:</span> <span class="val">[O maior problema que você resolve]</span>
+<span class="key">Diferenciais:</span> <span class="val">[O que te diferencia dos concorrentes]</span>
+<span class="key">Tom de comunicação:</span> <span class="val">[Ex: direto, consultivo, técnico, informal]</span>
+
+<span class="comment"># Como me ajudar</span>
+Seja direto e prático. Entregue o que pedi sem introdução longa.
+Quando eu pedir textos, escreva como eu escreveria — sem jargão
+corporativo, sem "Espero que esteja bem", sem enrolação.
+Me dê opções quando fizer sentido. Pergunte se algo não estiver claro.</div>
+
+    </div><!-- /section 2 -->
+
+
+    <!-- SEÇÃO 3 -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-num">3</div>
+        <div class="section-info">
+          <div class="section-title">Rotina de 3 passos — 3 horas devolvidas por dia</div>
+          <div class="section-desc">13 minutos de intenção. O resto do dia livre do operacional.</div>
+        </div>
+      </div>
+
+      <div class="routine-grid">
+        <div class="routine-card">
+          <div class="routine-card-head">
+            <div class="routine-time">Manhã · 5 min</div>
+            <div class="routine-name">Briefing do dia</div>
+          </div>
+          <div class="routine-card-body">
+            <div class="routine-item">Abra o Claude Cowork antes de abrir o e-mail</div>
+            <div class="routine-item">Cole suas tarefas e compromissos do dia</div>
+            <div class="routine-item">Peça o planejamento usando o Prompt 07</div>
+            <div class="routine-item">Siga o plano — não improvise</div>
+          </div>
+        </div>
+        <div class="routine-card">
+          <div class="routine-card-head">
+            <div class="routine-time">Durante o dia · contínuo</div>
+            <div class="routine-name">Delegue o operacional</div>
+          </div>
+          <div class="routine-card-body">
+            <div class="routine-item">Para cada tarefa "na mão": pause e abra o Claude</div>
+            <div class="routine-item">Descreva a tarefa em linguagem natural</div>
+            <div class="routine-item">Revise o output em 2 minutos</div>
+            <div class="routine-item">Ajuste e use — não refaça do zero</div>
+          </div>
+        </div>
+        <div class="routine-card">
+          <div class="routine-card-head">
+            <div class="routine-time">Final do dia · 8 min</div>
+            <div class="routine-name">Revisão + amanhã</div>
+          </div>
+          <div class="routine-card-body">
+            <div class="routine-item">Cole o que foi feito e o que ficou pendente</div>
+            <div class="routine-item">Peça análise do dia e ajuste de prioridades</div>
+            <div class="routine-item">Gere o briefing de amanhã ainda hoje</div>
+            <div class="routine-item">Feche o computador sem culpa</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:24px;">
+        <strong>Regra de ouro:</strong> antes de fazer qualquer tarefa operacional "na mão", pergunte — <em>isso é trabalho estratégico que só eu posso fazer, ou é trabalho que eu posso descrever em 3 linhas para o Claude?</em> Se for a segunda opção, você não deveria estar fazendo sozinho.
+      </div>
+
+    </div><!-- /section 3 -->
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div class="footer-brand">Nexus<span>Mind</span></div>
+      <div style="font-size:11px;color:var(--ink-3);margin-top:2px;">Método Demanda Infinita® · Igor Miguel</div>
+    </div>
+    <a class="footer-link" href="https://cal.com/admin-grupo-nexusmind-hxbhcy/bate-papo-nexusmind" target="_blank">Agendar bate-papo →</a>
+  </div>
+
+</div>
+</body>
+</html>
